@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Count words, characters, sentences and paragraphs with SimpleKit's free online word counter.">
+  <title>Word Counter - SimpleKit</title>
+
+  <link rel="stylesheet" href="/assets/styles.css">
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem("simplekit-theme");
+      const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = saved || preferred;
+    })();
+  </script>
+
+  <script src="/assets/app.js" defer></script>
+</head>
+
+<body>
+
+  <header class="container">
+    <nav class="navbar">
+      <a href="/" class="logo">Simple<span>Kit</span></a>
+
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <button class="theme-toggle" id="theme-toggle" type="button">🌙 Dark</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="tool-layout">
+
+      <a href="/" class="back-link">← Back to all tools</a>
+
+      <div class="tool-panel">
+
+        <h1>Word Counter</h1>
+
+        <p class="tool-description">
+          Count words, characters, sentences and paragraphs
+          in your text instantly.
+        </p>
+
+        <div class="field">
+          <label for="word-text">Enter or paste your text</label>
+
+          <textarea
+            id="word-text"
+            placeholder="Start typing or paste your text here..."
+            oninput="countWords()"
+          ></textarea>
+        </div>
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="countWords()"
+        >
+          Count Words
+        </button>
+
+        <div class="result" id="result" aria-live="polite"></div>
+
+      </div>
+
+      <section class="section-heading">
+        <h2>How it works</h2>
+        <p>
+          Enter your text above and SimpleKit automatically
+          calculates useful writing statistics.
+        </p>
+      </section>
+
+      <section class="tool-panel">
+        <h2>What does it count?</h2>
+
+        <ul>
+          <li>Words in your text</li>
+          <li>Total characters, including spaces</li>
+          <li>Characters without spaces</li>
+          <li>Detected sentences</li>
+          <li>Paragraphs</li>
+          <li>Estimated reading time</li>
+        </ul>
+
+        <p>
+          Reading time is estimated using an average reading
+          speed of 200 words per minute.
+        </p>
+      </section>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="current-year"></span> SimpleKit.</p>
+
+      <div class="footer-links">
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy/">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
