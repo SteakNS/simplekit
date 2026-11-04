@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Read the SimpleKit privacy policy and learn how the website handles information.">
+  <title>Privacy Policy | SimpleKit</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script>
+    (() => {
+      const saved = localStorage.getItem("simplekit-theme");
+      const theme = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <script src="../assets/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="../">SimpleKit</a>
+    <nav class="header-actions">
+      <a href="../">Home</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+    </nav>
+  </header>
+  <main class="page-container">
+    <section class="page-hero">
+      <span class="eyebrow">THE DETAILS</span>
+      <h1>Privacy Policy</h1>
+      <p>Last updated: November 4, 2026</p>
+    </section>
+    <section class="content-card">
+      <h2>1. Introduction</h2>
+      <p>Welcome to SimpleKit. This policy explains what information may be handled when you visit and use this website.</p>
+      <h2>2. Information you enter into our tools</h2>
+      <p>SimpleKit's calculators and other tools are designed to process the information you enter directly in your browser. The tools do not intentionally send your calculator inputs to a SimpleKit server.</p>
+      <p>For your privacy, avoid entering passwords, financial account details, or other sensitive personal information into website tools.</p>
+      <h2>3. Theme preference</h2>
+      <p>SimpleKit may save your light or dark theme preference in your browser's local storage so the website can remember your choice on your next visit.</p>
+      <h2>4. Cookies and analytics</h2>
+      <p>SimpleKit does not currently intentionally use its own analytics service or advertising cookies. This may change if analytics or advertising services are added in the future. If that happens, this policy will be updated to explain relevant data collection and third-party practices.</p>
+      <h2>5. Third-party websites</h2>
+      <p>Some links may take you to third-party websites, such as GitHub. Those websites have their own privacy policies and practices. SimpleKit does not control how they handle information.</p>
+      <h2>6. Children's privacy</h2>
+      <p>SimpleKit is a general-purpose website and is not intended to collect personal information from visitors. Please do not submit sensitive personal information through external services linked from this website.</p>
+      <h2>7. Changes to this policy</h2>
+      <p>This policy may be updated as SimpleKit changes. Any updates will be published on this page with a revised date.</p>
+      <h2>8. Contact</h2>
+      <p>If you have questions about this policy, you can contact the project through the <a href="https://github.com/SteakNS/simplekit/issues">SimpleKit GitHub Issues page</a>.</p>
+      <p class="muted">This policy is general information, not legal advice. Review and update it if you add advertising, analytics, forms, or other services.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p>© <span id="current-year">2026</span> SimpleKit. Simple tools, less hassle.</p>
+    <div class="footer-links">
+      <a href="../about/">About</a>
+      <a href="../contact/">Contact</a>
+      <a href="./">Privacy</a>
+    </div>
+  </footer>
+</body>
+</html>
