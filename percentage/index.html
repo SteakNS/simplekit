@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Use SimpleKit's free percentage calculator to find percentages, calculate percentage changes and work out what percentage one number is of another.">
+  <title>Percentage Calculator - SimpleKit</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script>
+    (function () {
+      const saved = localStorage.getItem("simplekit-theme");
+      const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = saved || preferred;
+    })();
+  </script>
+  <script src="/assets/app.js" defer></script>
+</head>
+
+<body>
+
+  <header class="container">
+    <nav class="navbar">
+      <a href="/" class="logo">Simple<span>Kit</span></a>
+
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <button class="theme-toggle" id="theme-toggle" type="button">🌙 Dark</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="tool-layout">
+
+      <a href="/" class="back-link">← Back to all tools</a>
+
+      <div class="tool-panel">
+
+        <h1>Percentage Calculator</h1>
+
+        <p class="tool-description">
+          Calculate percentages, find percentage changes and solve
+          everyday percentage problems.
+        </p>
+
+        <div class="field">
+          <label for="percentage-mode">Choose a calculation</label>
+
+          <select id="percentage-mode">
+            <option value="percent-of">What is X% of Y?</option>
+            <option value="what-percent">X is what percentage of Y?</option>
+            <option value="change">Percentage change from X to Y</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="percentage-first" id="first-label">Percentage (%)</label>
+          <input
+            type="number"
+            id="percentage-first"
+            placeholder="e.g. 25"
+            step="any"
+          >
+        </div>
+
+        <div class="field">
+          <label for="percentage-second" id="second-label">Number</label>
+          <input
+            type="number"
+            id="percentage-second"
+            placeholder="e.g. 200"
+            step="any"
+          >
+        </div>
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="calculatePercentage()"
+        >
+          Calculate
+        </button>
+
+        <div class="result" id="result" aria-live="polite"></div>
+
+      </div>
+
+      <section class="section-heading">
+        <h2>How to use this calculator</h2>
+        <p>
+          Select the type of percentage calculation, enter your two
+          numbers and press Calculate to see your result.
+        </p>
+      </section>
+
+      <section class="tool-panel">
+        <h2>Example</h2>
+        <p>
+          To find 20% of 150, select "What is X% of Y?",
+          enter 20 and 150, then calculate.
+        </p>
+        <p>
+          The answer is <strong>30</strong>.
+        </p>
+      </section>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="current-year"></span> SimpleKit.</p>
+      <div class="footer-links">
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy/">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
+
+    const mode = document.getElementById("percentage-mode");
+    const firstLabel = document.getElementById("first-label");
+    const secondLabel = document.getElementById("second-label");
+
+    mode.addEventListener("change", function () {
+      if (this.value === "percent-of") {
+        firstLabel.textContent = "Percentage (%)";
+        secondLabel.textContent = "Number";
+      } else if (this.value === "what-percent") {
+        firstLabel.textContent = "First number (X)";
+        secondLabel.textContent = "Second number (Y)";
+      } else {
+        firstLabel.textContent = "Starting value (X)";
+        secondLabel.textContent = "New value (Y)";
+      }
+
+      document.getElementById("result").classList.remove("show");
+    });
+  </script>
+
+</body>
+</html>
