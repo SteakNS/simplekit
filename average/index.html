@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Calculate the mean, median, sum and count of numbers using SimpleKit's free average calculator.">
+
+  <title>Average Calculator - SimpleKit</title>
+
+  <link rel="stylesheet" href="/assets/styles.css">
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem("simplekit-theme");
+      const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = saved || preferred;
+    })();
+  </script>
+
+  <script src="/assets/app.js" defer></script>
+</head>
+
+<body>
+
+  <header class="container">
+    <nav class="navbar">
+      <a href="/" class="logo">Simple<span>Kit</span></a>
+
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <button class="theme-toggle" id="theme-toggle" type="button">
+          🌙 Dark
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="tool-layout">
+
+      <a href="/" class="back-link">← Back to all tools</a>
+
+      <div class="tool-panel">
+
+        <h1>Average Calculator</h1>
+
+        <p class="tool-description">
+          Calculate the mean, median, sum and number of values
+          in your list.
+        </p>
+
+        <div class="field">
+
+          <label for="average-numbers">
+            Enter your numbers
+          </label>
+
+          <textarea
+            id="average-numbers"
+            placeholder="Example: 10, 20, 30, 40, 50"
+          ></textarea>
+
+          <p style="color:var(--muted);font-size:0.85rem;">
+            Separate numbers using commas, spaces or new lines.
+          </p>
+
+        </div>
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="calculateAverage()"
+        >
+          Calculate Average
+        </button>
+
+        <div class="result" id="result" aria-live="polite"></div>
+
+      </div>
+
+      <section class="section-heading">
+        <h2>What does it calculate?</h2>
+        <p>
+          SimpleKit gives you four useful statistical results.
+        </p>
+      </section>
+
+      <div class="tools-grid">
+
+        <div class="tool-card">
+          <div class="tool-icon">📊</div>
+          <h3>Mean</h3>
+          <p>The sum of all numbers divided by their count.</p>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">🔢</div>
+          <h3>Median</h3>
+          <p>The middle value after sorting the numbers.</p>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">➕</div>
+          <h3>Sum</h3>
+          <p>The total when all numbers are added together.</p>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">🧮</div>
+          <h3>Count</h3>
+          <p>The number of values entered into the calculator.</p>
+        </div>
+
+      </div>
+
+      <section class="tool-panel">
+        <h2>Example</h2>
+
+        <p>Enter these numbers:</p>
+
+        <p><strong>10, 20, 30, 40, 50</strong></p>
+
+        <ul>
+          <li>Mean: 30</li>
+          <li>Median: 30</li>
+          <li>Sum: 150</li>
+          <li>Count: 5</li>
+        </ul>
+
+      </section>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <p>© <span id="current-year"></span> SimpleKit.</p>
+
+      <div class="footer-links">
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy/">Privacy Policy</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
