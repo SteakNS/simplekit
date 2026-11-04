@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Learn about SimpleKit, a collection of free and easy-to-use online tools designed to simplify everyday tasks.">
+
+  <title>About Us - SimpleKit</title>
+
+  <link rel="stylesheet" href="/assets/styles.css">
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem("simplekit-theme");
+      const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = saved || preferred;
+    })();
+  </script>
+
+  <script src="/assets/app.js" defer></script>
+</head>
+
+<body>
+
+  <header class="container">
+    <nav class="navbar">
+      <a href="/" class="logo">Simple<span>Kit</span></a>
+
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <button class="theme-toggle" id="theme-toggle" type="button">
+          🌙 Dark
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="tool-layout">
+
+      <a href="/" class="back-link">← Back to home</a>
+
+      <div class="tool-panel">
+
+        <h1>About SimpleKit</h1>
+
+        <p class="tool-description">
+          Simple tools. Smarter everyday tasks.
+        </p>
+
+        <h2>What is SimpleKit?</h2>
+
+        <p>
+          SimpleKit is a collection of free online tools designed
+          to make everyday tasks easier.
+        </p>
+
+        <p>
+          Whether you need to calculate a percentage, count words,
+          work out a discount, convert units or calculate an average,
+          SimpleKit brings useful tools together in one convenient place.
+        </p>
+
+        <h2>Our goal</h2>
+
+        <p>
+          Our goal is to make useful online tools accessible to everyone.
+          We believe everyday tasks should be simple, quick and
+          straightforward.
+        </p>
+
+        <h2>What we offer</h2>
+
+        <ul>
+          <li>Free percentage calculator</li>
+          <li>Free word counter</li>
+          <li>Free discount calculator</li>
+          <li>Free unit converter</li>
+          <li>Free average calculator</li>
+        </ul>
+
+        <h2>Easy to use</h2>
+
+        <p>
+          SimpleKit is designed with simplicity in mind.
+          Our tools work directly in your web browser, so you
+          don't need to install software or create an account.
+        </p>
+
+        <h2>Get in touch</h2>
+
+        <p>
+          Have a suggestion or noticed something that could be improved?
+          Visit our <a href="/contact/" style="color:var(--primary);">Contact page</a>.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <p>© <span id="current-year"></span> SimpleKit.</p>
+
+      <div class="footer-links">
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy/">Privacy Policy</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
