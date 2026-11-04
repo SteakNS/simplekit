@@ -2,256 +2,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="SimpleKit - Free online calculators and useful everyday tools.">
-<title>SimpleKit - Free Online Tools</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f6f7fb;color:#20243a}
-header{background:white;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee}
-.logo{font-size:25px;font-weight:bold;color:#5865df}
-header a{color:#555;text-decoration:none}
-.hero{text-align:center;padding:65px 20px 45px;background:linear-gradient(135deg,#e8ebff,#f7f5ff)}
-.hero h1{font-size:clamp(35px,6vw,55px);margin:10px}
-.hero p{color:#656b80;font-size:18px}
-.search{width:min(500px,90%);padding:15px;border:1px solid #ddd;border-radius:12px;font-size:16px;margin-top:15px}
-main{max-width:1050px;margin:40px auto;padding:0 20px}
-h2{font-size:27px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
-.card{background:white;padding:25px;border-radius:16px;box-shadow:0 4px 18px #1720440c;cursor:pointer;transition:.2s}
-.card:hover{transform:translateY(-4px);box-shadow:0 8px 25px #17204418}
-.card .icon{font-size:30px}
-.card h3{margin-bottom:8px}
-.card p{color:#70768a;line-height:1.5}
-#tool{display:none;background:white;padding:28px;border-radius:16px;margin:25px 0;box-shadow:0 4px 20px #17204410}
-button{background:#5865df;color:white;border:0;border-radius:9px;padding:12px 19px;font-size:15px;cursor:pointer;margin-top:12px}
-button:hover{background:#4552c8}
-input,textarea,select{display:block;width:100%;padding:12px;border:1px solid #ddd;border-radius:9px;font-size:16px;margin:8px 0 16px}
-label{font-weight:bold}
-.result{background:#eff1ff;padding:17px;border-radius:10px;margin-top:17px;line-height:1.7}
-.back{background:#777;margin-bottom:15px}
-footer{text-align:center;padding:30px;color:#777;margin-top:50px}
-.hidden{display:none}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="SimpleKit offers free, easy-to-use online calculators, converters and productivity tools. No downloads or sign-ups required.">
+
+  <meta name="keywords" content="free online tools, percentage calculator, word counter, discount calculator, unit converter, average calculator">
+
+  <meta name="author" content="SimpleKit">
+
+  <meta name="theme-color" content="#6958e8">
+
+  <title>SimpleKit - Free Online Tools</title>
+
+  <link rel="stylesheet" href="/assets/styles.css">
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem("simplekit-theme");
+      const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+
+      document.documentElement.dataset.theme = saved || preferred;
+    })();
+  </script>
+
+  <script src="/assets/app.js" defer></script>
 </head>
+
 <body>
 
-<header>
-<div class="logo">SimpleKit.</div>
-<a href="#" onclick="home();return false">All tools</a>
-</header>
+  <!-- NAVIGATION -->
+  <header class="container">
+    <nav class="navbar">
 
-<section class="hero">
-<h1>Small tools. Big time-savers.</h1>
-<p>Free, simple tools for everyday life. No sign-up required.</p>
-<input class="search" id="search" placeholder="Search for a tool..." oninput="filterTools()">
-</section>
+      <a href="/" class="logo">
+        Simple<span>Kit</span>
+      </a>
 
-<main>
-<section id="home">
-<h2>Explore our tools</h2>
-<div class="grid" id="grid">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
 
-<div class="card" data-search="percentage calculator math" onclick="openTool('percentage')">
-<div class="icon">％</div>
-<h3>Percentage Calculator</h3>
-<p>Calculate percentages quickly and easily.</p>
-</div>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch theme"
+        >
+          🌙 Dark
+        </button>
+      </div>
 
-<div class="card" data-search="word character text counter" onclick="openTool('words')">
-<div class="icon">Aa</div>
-<h3>Word Counter</h3>
-<p>Count words, characters and sentences.</p>
-</div>
+    </nav>
+  </header>
 
-<div class="card" data-search="discount shopping savings calculator" onclick="openTool('discount')">
-<div class="icon">🏷️</div>
-<h3>Discount Calculator</h3>
-<p>Calculate sale prices and savings.</p>
-</div>
 
-<div class="card" data-search="unit converter length weight temperature" onclick="openTool('converter')">
-<div class="icon">⇄</div>
-<h3>Unit Converter</h3>
-<p>Convert length, weight and temperature.</p>
-</div>
+  <!-- HERO SECTION -->
+  <main class="container">
 
-<div class="card" data-search="average mean calculator numbers" onclick="openTool('average')">
-<div class="icon">∑</div>
-<h3>Average Calculator</h3>
-<p>Calculate the average of any numbers.</p>
-</div>
+    <section class="hero">
 
-</div>
-</section>
+      <div class="hero-content">
 
-<section id="tool">
-<button class="back" onclick="home()">← Back to all tools</button>
-<div id="toolContent"></div>
-</section>
-</main>
+        <h1>Simple tools.<br>Smarter everyday tasks.</h1>
 
-<footer>
-<p>© <span id="year"></span> SimpleKit. Free tools for everyone.</p>
-</footer>
+        <p>
+          Free online tools that make everyday calculations and tasks
+          quicker, easier and simpler.
+        </p>
 
-<script>
-document.getElementById("year").textContent=new Date().getFullYear();
+        <input
+          type="search"
+          id="tool-search"
+          class="search-box"
+          placeholder="Search for a tool..."
+          aria-label="Search available tools"
+        >
 
-function home(){
-document.getElementById("home").style.display="block";
-document.getElementById("tool").style.display="none";
-window.scrollTo(0,0);
-}
+      </div>
 
-function openTool(name){
-document.getElementById("home").style.display="none";
-document.getElementById("tool").style.display="block";
-let html="";
+    </section>
 
-if(name==="percentage"){
-html=`
-<h2>Percentage Calculator</h2>
-<p>Find a percentage of a number.</p>
-<label>Percentage (%)</label>
-<input id="percent" type="number" placeholder="20">
-<label>Number</label>
-<input id="number" type="number" placeholder="150">
-<button onclick="percentage()">Calculate</button>
-<div class="result" id="result">Your answer will appear here.</div>`;
-}
 
-if(name==="words"){
-html=`
-<h2>Word & Character Counter</h2>
-<p>Enter your text below.</p>
-<textarea id="text" rows="8" placeholder="Start typing..." oninput="countWords()"></textarea>
-<div class="result" id="result">Words: 0<br>Characters: 0<br>Characters without spaces: 0<br>Sentences: 0</div>`;
-}
+    <!-- TOOLS SECTION -->
+    <section>
 
-if(name==="discount"){
-html=`
-<h2>Discount Calculator</h2>
-<label>Original price</label>
-<input id="price" type="number" placeholder="100">
-<label>Discount percentage</label>
-<input id="discount" type="number" placeholder="25">
-<button onclick="discount()">Calculate savings</button>
-<div class="result" id="result">Your result will appear here.</div>`;
-}
+      <div class="section-heading">
+        <h2>Explore our tools</h2>
+        <p>Everything you need, all in one simple place.</p>
+      </div>
 
-if(name==="converter"){
-html=`
-<h2>Unit Converter</h2>
-<label>Category</label>
-<select id="category" onchange="setUnits()">
-<option value="length">Length</option>
-<option value="weight">Weight</option>
-<option value="temperature">Temperature</option>
-</select>
-<label>Convert from</label>
-<select id="from"></select>
-<label>Convert to</label>
-<select id="to"></select>
-<label>Amount</label>
-<input id="amount" type="number" placeholder="Enter amount" oninput="convert()">
-<div class="result" id="result">Your result will appear here.</div>`;
-}
 
-if(name==="average"){
-html=`
-<h2>Average Calculator</h2>
-<p>Enter numbers separated by commas or spaces.</p>
-<textarea id="numbers" rows="4" placeholder="10, 20, 30, 40"></textarea>
-<button onclick="average()">Calculate average</button>
-<div class="result" id="result">Your result will appear here.</div>`;
-}
+      <div class="tools-grid" id="tools-grid">
 
-document.getElementById("toolContent").innerHTML=html;
-if(name==="converter")setUnits();
-window.scrollTo(0,0);
-}
 
-function percentage(){
-let p=Number(document.getElementById("percent").value);
-let n=Number(document.getElementById("number").value);
-if(!document.getElementById("percent").value||!document.getElementById("number").value){
-document.getElementById("result").textContent="Please enter both values.";return;
-}
-document.getElementById("result").innerHTML="<b>"+(p/100*n).toLocaleString()+"</b>";
-}
+        <!-- PERCENTAGE CALCULATOR -->
+        <a href="/percentage/" class="tool-card">
 
-function countWords(){
-let t=document.getElementById("text").value;
-let words=t.trim()?t.trim().split(/\s+/).length:0;
-let sentences=(t.match(/[.!?]+/g)||[]).length;
-document.getElementById("result").innerHTML=
-"Words: "+words+
-"<br>Characters: "+t.length+
-"<br>Characters without spaces: "+t.replace(/\s/g,"").length+
-"<br>Sentences: "+sentences;
-}
+          <div class="tool-icon">📊</div>
 
-function discount(){
-let p=Number(document.getElementById("price").value);
-let d=Number(document.getElementById("discount").value);
-if(!document.getElementById("price").value||!document.getElementById("discount").value||p<0||d<0||d>100){
-document.getElementById("result").textContent="Enter a valid price and a discount between 0 and 100.";return;
-}
-let saving=p*d/100;
-document.getElementById("result").innerHTML=
-"Final price: <b>"+(p-saving).toFixed(2)+"</b><br>You save: "+saving.toFixed(2);
-}
+          <h3>Percentage Calculator</h3>
 
-const units={
-length:{"Meters":1,"Kilometers":1000,"Centimeters":.01,"Miles":1609.344,"Feet":.3048,"Inches":.0254},
-weight:{"Kilograms":1,"Grams":.001,"Pounds":.45359237,"Ounces":.0283495},
-temperature:{"Celsius":1,"Fahrenheit":1,"Kelvin":1}
-};
+          <p>
+            Calculate percentages, find percentage changes
+            and solve everyday percentage problems.
+          </p>
 
-function setUnits(){
-let category=document.getElementById("category").value;
-let names=Object.keys(units[category]);
-document.getElementById("from").innerHTML=names.map(x=>`<option>${x}</option>`).join("");
-document.getElementById("to").innerHTML=names.map(x=>`<option>${x}</option>`).join("");
-document.getElementById("to").selectedIndex=1;
-convert();
-}
+        </a>
 
-function convert(){
-let category=document.getElementById("category").value;
-let from=document.getElementById("from").value;
-let to=document.getElementById("to").value;
-let value=document.getElementById("amount").value;
-if(value===""){document.getElementById("result").textContent="Your result will appear here.";return;}
-let x=Number(value),answer;
-if(category==="temperature"){
-let c=from==="Celsius"?x:from==="Fahrenheit"?(x-32)*5/9:x-273.15;
-answer=to==="Celsius"?c:to==="Fahrenheit"?c*9/5+32:c+273.15;
-}else{
-answer=x*units[category][from]/units[category][to];
-}
-document.getElementById("result").innerHTML="<b>"+answer.toLocaleString(undefined,{maximumFractionDigits:6})+" "+to+"</b>";
-}
 
-function average(){
-let raw=document.getElementById("numbers").value.trim();
-let vals=raw.split(/[,\s;]+/).filter(Boolean).map(Number);
-if(!raw||vals.some(x=>!Number.isFinite(x))){
-document.getElementById("result").textContent="Please enter valid numbers.";return;
-}
-let sum=vals.reduce((a,b)=>a+b,0);
-document.getElementById("result").innerHTML=
-"Average: <b>"+(sum/vals.length).toLocaleString()+"</b><br>Count: "+vals.length+"<br>Sum: "+sum;
-}
+        <!-- WORD COUNTER -->
+        <a href="/word-counter/" class="tool-card">
 
-function filterTools(){
-let q=document.getElementById("search").value.toLowerCase();
-document.querySelectorAll(".card").forEach(card=>{
-card.style.display=card.dataset.search.includes(q)?"block":"none";
-});
-}
-</script>
+          <div class="tool-icon">📝</div>
+
+          <h3>Word Counter</h3>
+
+          <p>
+            Count words, characters, sentences and paragraphs
+            in your text.
+          </p>
+
+        </a>
+
+
+        <!-- DISCOUNT CALCULATOR -->
+        <a href="/discount/" class="tool-card">
+
+          <div class="tool-icon">🏷️</div>
+
+          <h3>Discount Calculator</h3>
+
+          <p>
+            Calculate sale prices and find out how much
+            you save on discounts.
+          </p>
+
+        </a>
+
+
+        <!-- UNIT CONVERTER -->
+        <a href="/unit-converter/" class="tool-card">
+
+          <div class="tool-icon">🔄</div>
+
+          <h3>Unit Converter</h3>
+
+          <p>
+            Convert length, weight, volume and temperature
+            between different units.
+          </p>
+
+        </a>
+
+
+        <!-- AVERAGE CALCULATOR -->
+        <a href="/average/" class="tool-card">
+
+          <div class="tool-icon">🧮</div>
+
+          <h3>Average Calculator</h3>
+
+          <p>
+            Calculate the mean, median and sum of a list
+            of numbers.
+          </p>
+
+        </a>
+
+
+      </div>
+
+      <p
+        id="no-results"
+        style="display:none; text-align:center; color:var(--muted);"
+      >
+        No tools found. Try another search.
+      </p>
+
+    </section>
+
+
+    <!-- WHY SIMPLEKIT -->
+    <section class="section-heading">
+
+      <h2>Why use SimpleKit?</h2>
+
+      <p>
+        Useful tools without unnecessary complications.
+      </p>
+
+    </section>
+
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-icon">⚡</div>
+        <h3>Quick and easy</h3>
+        <p>
+          Get results quickly with simple interfaces
+          designed for everyday use.
+        </p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🆓</div>
+        <h3>Free to use</h3>
+        <p>
+          Use our tools without paying or creating
+          an account.
+        </p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🔒</div>
+        <h3>Privacy-friendly</h3>
+        <p>
+          Calculator inputs are processed directly
+          in your browser.
+        </p>
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <div class="container footer-inner">
+
+      <p>
+        © <span id="current-year"></span> SimpleKit.
+        All rights reserved.
+      </p>
+
+      <div class="footer-links">
+
+        <a href="/about/">About</a>
+
+        <a href="/contact/">Contact</a>
+
+        <a href="/privacy/">Privacy Policy</a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- SMALL PAGE SCRIPTS -->
+  <script>
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
+
+    const searchInput = document.getElementById("tool-search");
+    const cards = document.querySelectorAll("#tools-grid .tool-card");
+    const noResults = document.getElementById("no-results");
+
+    searchInput.addEventListener("input", function () {
+      const query = this.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      cards.forEach(function (card) {
+        const matches = card.textContent.toLowerCase().includes(query);
+
+        card.style.display = matches ? "" : "none";
+
+        if (matches) visibleCount++;
+      });
+
+      noResults.style.display = visibleCount === 0 ? "block" : "none";
+    });
+  </script>
+
 </body>
 </html>
