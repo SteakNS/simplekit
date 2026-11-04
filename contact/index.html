@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Contact SimpleKit to report problems, suggest improvements or recommend new online tools.">
+
+  <title>Contact Us - SimpleKit</title>
+
+  <link rel="stylesheet" href="/assets/styles.css">
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem("simplekit-theme");
+      const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = saved || preferred;
+    })();
+  </script>
+
+  <script src="/assets/app.js" defer></script>
+</head>
+
+<body>
+
+  <header class="container">
+    <nav class="navbar">
+      <a href="/" class="logo">Simple<span>Kit</span></a>
+
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <button class="theme-toggle" id="theme-toggle" type="button">
+          🌙 Dark
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="tool-layout">
+
+      <a href="/" class="back-link">← Back to home</a>
+
+      <div class="tool-panel">
+
+        <h1>Contact Us</h1>
+
+        <p class="tool-description">
+          Have a question, suggestion or found a problem?
+          We'd like to hear from you.
+        </p>
+
+        <h2>Get in touch</h2>
+
+        <p>
+          You can contact the SimpleKit team through our
+          GitHub repository.
+        </p>
+
+        <a
+          href="https://github.com/SteakNS/simplekit/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="primary-button"
+          style="display:block;text-align:center;"
+        >
+          Visit our GitHub contact page
+        </a>
+
+        <h2 style="margin-top:30px;">What can you contact us about?</h2>
+
+        <ul>
+          <li>Reporting a calculator that isn't working correctly.</li>
+          <li>Suggesting a new tool or feature.</li>
+          <li>Reporting a website problem.</li>
+          <li>Sharing general feedback.</li>
+        </ul>
+
+        <h2>Help us improve</h2>
+
+        <p>
+          SimpleKit is continually being improved.
+          Your feedback can help make our tools more useful
+          and easier to use.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <p>© <span id="current-year"></span> SimpleKit.</p>
+
+      <div class="footer-links">
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy/">Privacy Policy</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
