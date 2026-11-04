@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Calculate sale prices, discounts and savings with SimpleKit's free discount calculator.">
+
+  <title>Discount Calculator - SimpleKit</title>
+
+  <link rel="stylesheet" href="/assets/styles.css">
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem("simplekit-theme");
+      const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = saved || preferred;
+    })();
+  </script>
+
+  <script src="/assets/app.js" defer></script>
+</head>
+
+<body>
+
+  <header class="container">
+    <nav class="navbar">
+      <a href="/" class="logo">Simple<span>Kit</span></a>
+
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <button class="theme-toggle" id="theme-toggle" type="button">
+          🌙 Dark
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="tool-layout">
+
+      <a href="/" class="back-link">← Back to all tools</a>
+
+      <div class="tool-panel">
+
+        <h1>Discount Calculator</h1>
+
+        <p class="tool-description">
+          Find out how much you save and what the final sale
+          price will be after a discount.
+        </p>
+
+        <div class="field">
+          <label for="original-price">Original price</label>
+          <input
+            type="number"
+            id="original-price"
+            placeholder="e.g. 100"
+            min="0"
+            step="any"
+          >
+        </div>
+
+        <div class="field">
+          <label for="discount-percent">Discount percentage (%)</label>
+          <input
+            type="number"
+            id="discount-percent"
+            placeholder="e.g. 25"
+            min="0"
+            max="100"
+            step="any"
+          >
+        </div>
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="calculateDiscount()"
+        >
+          Calculate Discount
+        </button>
+
+        <div class="result" id="result" aria-live="polite"></div>
+
+      </div>
+
+      <section class="section-heading">
+        <h2>How to use it</h2>
+        <p>
+          Enter the original price and discount percentage.
+          SimpleKit calculates the amount saved and the final price.
+        </p>
+      </section>
+
+      <section class="tool-panel">
+
+        <h2>Example calculation</h2>
+
+        <p>
+          Imagine an item costs 80 and has a 25% discount.
+        </p>
+
+        <ul>
+          <li>Original price: 80</li>
+          <li>Discount: 25%</li>
+          <li>Money saved: 20</li>
+          <li>Final price: 60</li>
+        </ul>
+
+      </section>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <p>© <span id="current-year"></span> SimpleKit.</p>
+
+      <div class="footer-links">
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy/">Privacy Policy</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
