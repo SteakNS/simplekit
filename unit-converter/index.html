@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Convert length, weight, volume and temperature with SimpleKit's free online unit converter.">
+
+  <title>Unit Converter - SimpleKit</title>
+
+  <link rel="stylesheet" href="/assets/styles.css">
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem("simplekit-theme");
+      const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = saved || preferred;
+    })();
+  </script>
+
+  <script src="/assets/app.js" defer></script>
+</head>
+
+<body>
+
+  <header class="container">
+    <nav class="navbar">
+      <a href="/" class="logo">Simple<span>Kit</span></a>
+
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <button class="theme-toggle" id="theme-toggle" type="button">
+          🌙 Dark
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="tool-layout">
+
+      <a href="/" class="back-link">← Back to all tools</a>
+
+      <div class="tool-panel">
+
+        <h1>Unit Converter</h1>
+
+        <p class="tool-description">
+          Convert between different units of length, weight,
+          volume and temperature.
+        </p>
+
+        <div class="field">
+          <label for="unit-category">Conversion category</label>
+
+          <select id="unit-category">
+            <option value="length">Length</option>
+            <option value="weight">Weight</option>
+            <option value="volume">Volume</option>
+            <option value="temperature">Temperature</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="unit-value">Amount</label>
+
+          <input
+            type="number"
+            id="unit-value"
+            placeholder="Enter a number"
+            step="any"
+          >
+        </div>
+
+        <div class="field">
+          <label for="unit-from">Convert from</label>
+
+          <select id="unit-from">
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="unit-to">Convert to</label>
+
+          <select id="unit-to">
+          </select>
+        </div>
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="convertUnits()"
+        >
+          Convert Units
+        </button>
+
+        <div class="result" id="result" aria-live="polite"></div>
+
+      </div>
+
+      <section class="section-heading">
+        <h2>Available conversions</h2>
+        <p>Choose from four useful conversion categories.</p>
+      </section>
+
+      <div class="tools-grid">
+
+        <div class="tool-card">
+          <div class="tool-icon">📏</div>
+          <h3>Length</h3>
+          <p>Metres, kilometres, centimetres, miles, feet and inches.</p>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">⚖️</div>
+          <h3>Weight</h3>
+          <p>Kilograms, grams, milligrams, pounds and ounces.</p>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">🥤</div>
+          <h3>Volume</h3>
+          <p>Litres, millilitres, US gallons and US cups.</p>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">🌡️</div>
+          <h3>Temperature</h3>
+          <p>Celsius, Fahrenheit and Kelvin.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <p>© <span id="current-year"></span> SimpleKit.</p>
+
+      <div class="footer-links">
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy/">Privacy Policy</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
+
+    const category = document.getElementById("unit-category");
+    const from = document.getElementById("unit-from");
+    const to = document.getElementById("unit-to");
+
+    category.addEventListener("change", function () {
+      document.getElementById("result").classList.remove("show");
+    });
+
+    from.addEventListener("change", function () {
+      document.getElementById("result").classList.remove("show");
+    });
+
+    to.addEventListener("change", function () {
+      document.getElementById("result").classList.remove("show");
+    });
+  </script>
+
+</body>
+</html>
